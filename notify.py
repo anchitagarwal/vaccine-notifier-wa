@@ -29,7 +29,7 @@ def check_availability(zip_codes, date_ranges, radius=25, vac_name="Moderna"):
                 match = re.search(r"Available Appointments:\s*(\d+)", text, re.MULTILINE)
                 if match is not None:
                     appointments = int(match.group(1))
-                    if appointments > 0:
+                    if appointments >= 0:
                         text = '\n\t'.join([line for line in text.split('\n') if line.strip()])
                         print(f"Found Option: {urllib.parse.quote(url)} \n\t {text} \n\n")
                         found = True
