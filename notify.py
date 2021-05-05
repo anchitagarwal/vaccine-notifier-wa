@@ -44,5 +44,5 @@ def check_availability(zip_codes, date_ranges, radius=25, vac_name="Moderna"):
 
 if __name__ == "__main__":
     zip_codes = ["98109"]
-    date_range = [datetime.date(2021, 5, 13), datetime.date(2021, 5, 13)]
-    check_availability(zip_codes, date_range, radius=5, vac_name="Pfizer-BioNTech+COVID-19+Vaccine")
+    date_range = [datetime.date(2021, 5, 13), datetime.date(2021, 5, 14)]
+    check_availability(zip_codes, date_range, radius=15, vac_name="Pfizer-BioNTech+COVID-19+Vaccine")
