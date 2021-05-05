@@ -16,11 +16,12 @@ def check_availability(zip_codes, date_ranges, radius=25, vac_name="Moderna"):
         for i in range(delta.days + 1):
             cur_date = date_ranges[0] + datetime.timedelta(days=i)
 
-            url = "https://prepmod.doh.wa.gov/clinic/search?q[services_name_in][]=covid&q[age_groups_name_in][" \
+            url = "https://prepmod.doh.wa.gov/appointment/en/clinic/search?q[services_name_in][]=covid&q[age_groups_name_in][" \
                   f"]=Adults&location={zip_}&search_radius={radius}+miles&q[" \
                   f"venue_search_name_or_venue_name_i_cont]=&clinic_date_eq[" \
                   f"year]={cur_date.year}&clinic_date_eq[month]={cur_date.month}&clinic_date_eq[day]={cur_date.day}&q[" \
-                  f"vaccinations_name_i_cont]={vac_name}&commit=Search#search_results "
+                  f"vaccinations_name_i_cont]={vac_name}&commit=Search#search_results"
+            # import pdb; pdb.set_trace()
             r = requests.get(url)
             soup = BeautifulSoup(r.text, 'html.parser')
 
@@ -42,6 +43,6 @@ def check_availability(zip_codes, date_ranges, radius=25, vac_name="Moderna"):
 
 
 if __name__ == "__main__":
-    zip_codes = ["98004"]
-    date_range = [datetime.date(2021, 4, 28), datetime.date(2021, 4, 30)]
-    check_availability(zip_codes, date_range, radius=5)
+    zip_codes = ["98109"]
+    date_range = [datetime.date(2021, 5, 12), datetime.date(2021, 5, 13)]
+    check_availability(zip_codes, date_range, radius=5, vac_name="Pfizer-BioNTech+COVID-19+Vaccine")
